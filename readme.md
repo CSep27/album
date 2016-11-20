@@ -29,8 +29,8 @@
 
 # 根据url传给用户不同的页面，后台路由
 + req.url 获取请求路径
-+ /       index.html
-+ /album  album.html
++ GET /       index.html
++ GET /album  album.html
 + 静态文件资源，以/node_module/或者/public/开头的
 
 + 实现方案：
@@ -69,4 +69,11 @@ http
 ```
 
 # 读取uploads里相册名称渲染到页面上
-+ /getAlbums
++ GET /getAlbums
+
+# 添加相册 表单提交相册名称
++ GET /add?albumName=xxx
++ 表单 GET 请求提交
+  表单默认会将该表单内部的所有具有 name 属性的 input
+  按照 input的 name=input的value 的形式放到 url 地址栏中，发起请求
+  http://127.0.0.1:3000/add?albumName=acd

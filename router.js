@@ -13,6 +13,9 @@ module.exports = (req, res) => {
     const pathname = urlObj.pathname; //  得到请求地址
     const query = urlObj.query; // 得到查询字符串
 
+    // 给req挂载一个属性
+    req.query = query;
+
     // 处理静态资源请求
     if (pathname.startsWith('/node_modules/') || pathname.startsWith('/public/')) {
         fs.readFile(`.${pathname}`, (err, data)=> {
@@ -29,7 +32,9 @@ module.exports = (req, res) => {
         handlers.showAlbums(req, res);
     } else if (pathname === '/getAlbums') {
         handlers.getAlbums(req, res);
-    } else {
+    } else if(pathname === '/add'){
+        handlers.addAlbum(req,res);
+    }else {
         handlers.handle404(req, res);
     }
 }
