@@ -17,7 +17,7 @@ module.exports = (req, res) => {
     req.query = query;
 
     // 处理静态资源请求
-    if (pathname.startsWith('/node_modules/') || pathname.startsWith('/public/')) {
+    if (pathname.startsWith('/node_modules/') || pathname.startsWith('/public/') || pathname.startsWith('/uploads/')) {
         fs.readFile(`.${pathname}`, (err, data)=> {
             if (err) {
                 throw err;
@@ -34,7 +34,7 @@ module.exports = (req, res) => {
         handlers.getAlbums(req, res);
     } else if(pathname === '/add'){
         handlers.addAlbum(req,res);
-    }else {
+    } else {
         handlers.handle404(req, res);
     }
 }

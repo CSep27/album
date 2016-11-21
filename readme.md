@@ -77,3 +77,6 @@ http
   表单默认会将该表单内部的所有具有 name 属性的 input
   按照 input的 name=input的value 的形式放到 url 地址栏中，发起请求
   http://127.0.0.1:3000/add?albumName=acd
+
+# 点击相册跳转到相应的相册页面
++ GET /album?albumName=xxx

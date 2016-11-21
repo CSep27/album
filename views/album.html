@@ -37,26 +37,19 @@
 
 <div class="container">
   <div class="row">
-      <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-          <img src="img/1.jpg" alt="">
-        </div>
+    <% imgPaths.forEach(function(imgPath,index)){ %>
+    <div class="col-xs-6 col-md-3">
+      <div class="thumbnail">
+        <!-- a/1.jpg 文件夹+图片 是动态的，也就是后台需要提供的数据-->
+        <!--<img src="uploads/a/1.jpg" alt="">-->
+        <img src="uploads/<%= imgPath %>" alt="">
       </div>
-      <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-          <img src="img/2.jpg" alt="">
-        </div>
-      </div>
-      <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-          <img src="img/3.jpg" alt="">
-        </div>
-      </div>
-      <div class="col-xs-6 col-md-3">
-        <div class="thumbnail">
-          <img src="img/3898-106.jpg" alt="">
-        </div>
-      </div>
+    </div>
+    <% } %>
+    <!-- 处理相册为空 -->
+    <% if(imgPaths.length === 0){ %>
+    <p>该相册没有内容</p>
+    <% } %>
   </div>
 </div>
 
@@ -64,8 +57,13 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      
-      <form action="<%= uploadUrl %>" method="post" enctype="multipart/form-data">
+      <!--
+          有文件的表单提交：
+            1. method="post" 必须
+            2. 将表单的 enctype="multipart/form-data"
+            3. file类型的input也必须有 name 属性
+         -->
+      <form action="/album?albumName=<%= albumName %>" method="post" enctype="multipart/form-data">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                   aria-hidden="true">&times;</span></button>
